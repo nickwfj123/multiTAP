@@ -1,0 +1,7 @@
+name: cytof-shared
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - imagecodecs
+prefix: /Users/ivangu/anaconda3/envs/cytof
