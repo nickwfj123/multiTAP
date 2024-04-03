@@ -1,3 +1,6 @@
+# give some time reference to the user
+print('Importing Gradio app packages... (first launch takes about 3-5 minutes)')
+
 import gradio as gr
 import yaml
 import skimage
@@ -356,7 +359,7 @@ with gr.Blocks() as demo:
     
     gr.Markdown("# Step 2. Modify existing channels")
     gr.Markdown("After visualizing the individual channels, did you notice any that should not be included in the next steps? Remove those if so.")
-    gr.Markdown("Define channels designed to visualize nuclei. Optionally, define channels degisned to visualize membranes.")
+    gr.Markdown("Define channels designed to visualize nuclei. Optionally, define channels designed to visualize membranes.")
 
     with gr.Row(equal_height=True): # third row selects nuclei channels
         with gr.Column():
@@ -397,7 +400,7 @@ with gr.Blocks() as demo:
     cohort_state = gr.State(CytofCohort())
     with gr.Row(): # feature extraction related functinos
         with gr.Column():
-            gr.CheckboxGroup(choices=['Yes', 'Yes', 'Yes'], label='Note: This step will take significantly longer than the previous ones. A 300MB IMC file takes about 7 minutes to compute. Did you read this note?')
+            gr.CheckboxGroup(choices=['Yes', 'Yes', 'Yes'], label='Note: This step will take significantly longer than the previous ones. A 130MB IMC file takes about 14 minutes to compute. Did you read this note?')
             norm_percentile = gr.Slider(minimum=50, maximum=99, step=1, value=75, interactive=True, label='Normalized quantification percentile')
             extract_btn = gr.Button('Extract')
         feat_df = gr.DataFrame(headers=['id','coordinate_x','coordinate_y','area_nuclei'], label='Feature extraction summary')
@@ -423,7 +426,7 @@ with gr.Blocks() as demo:
         # spatial_btn logic is in step6. This is populate the marker positive dropdown options
 
     gr.Markdown('# Step 6. Visualize positive markers')
-    gr.Markdown('Select two markers for side-by-side comparison to visualize their positive states in cells. This serves two purposes. 1) Validate the co-expression analysis results. High expression level should mean a similar number of positive markers within the two slides, whereas low expression level mean a large difference of in the number of positive markers. 2) Validate teh spatial interaction analysis results. High interaction means the two positive markers are in close proximity of each other (proximity is previously defined in `clustering threshold`), and vice versa.')
+    gr.Markdown('Select two markers for side-by-side comparison to visualize their positive states in cells. This serves two purposes. 1) Validate the co-expression analysis results. High expression level should mean a similar number of positive markers within the two slides, whereas low expression level mean a large difference of in the number of positive markers. 2) Validate the spatial interaction analysis results. High interaction means the two positive markers are in close proximity of each other (proximity is previously defined in `clustering threshold`), and vice versa.')
     
     with gr.Row(): # two marker positive visualization - dropdown options
         selected_marker1 = gr.Dropdown(label='Select one marker', info='Select a marker to visualize', interactive=True)
