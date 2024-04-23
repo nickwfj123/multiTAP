@@ -10,9 +10,11 @@ If you find any of the tools in this repository useful, please cite us:
 TBD.
 
 # Getting started
-The most straightforward way is to utilize our graphical user interface (GUI) hosted on :hugs: : https://huggingface.co/spaces/QBRC/multiTAP	
+The most straightforward access to multiTAP is through our graphical user interface (GUI):
+- https://ai.swmed.edu/projects/multitap/ is an informative website that includes both an introduction and analysis tool to multiTAP. 
+- https://huggingface.co/spaces/QBRC/multiTAP is a space hosted on :hugs: if you need to access multiTAP execution logs.
 
-The link above should open to the following page:
+The links above should open to the following analysis page:
 
 <img src="doc_img/platform-page.png">
 
