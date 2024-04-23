@@ -123,13 +123,15 @@ We also provide notebook tutorials to faciliate any modifications to the analysi
 - First, checkout this notebook which was used to generated the [manuscript figures](notebooks/tutorial-figures.ipynb).
 
 - Then, reference the following notebooks in accordance to your analysis goal:
-
-   - Analyzing single ROIs saved as TXT files: 
-      refer to <a href="notebooks/tutorial-Single-ROI-txt.ipynb">this jupyter notebook</a>.
    - Analyzing single ROIs saved as TIFF files:
       refer to <a href="notebooks/tutorial-Single-ROI-tiff.ipynb">this jupyter notebook</a>.
+   - Analyzing single ROIs saved as TXT files: 
+      refer to <a href="notebooks/tutorial-Single-ROI-txt.ipynb">this jupyter notebook</a>.
+
    - Analyzing multiple ROIs contained in MCD files:
       refer to <a href="notebooks/tutorial-Single-Slide-mcd.ipynb">this jupyter notebook</a>.
+   - Preprocess `.qptiff` high dimensional spatial imaging files and save as TIFF files:
+      refer to <a href="notebooks/qptiff-preprocess.ipynb">this jupyter notebook</a>.   
 
 
 # Command line interface usage
