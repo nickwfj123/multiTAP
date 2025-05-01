@@ -1157,7 +1157,7 @@ def apply_threshold_to_column(column, threshold):
 class CytofCohort():
     def __init__(self, cytof_images: Optional[dict] = None, 
                  df_cohort: Optional[pd.DataFrame] = None, 
-                 dir_out: str = "./", 
+                 dir_out: Optional[str] = "./", 
                  cohort_name: str = "cohort1"):
         """
         cytof_images: 
@@ -1173,10 +1173,14 @@ class CytofCohort():
             "cell_ave_only": ["cell_ave"]
         }
         
-        self.name    = cohort_name
-        self.dir_out = os.path.join(dir_out, self.name)
-        if not os.path.exists(self.dir_out):
-            os.makedirs(self.dir_out)
+        self.name = cohort_name
+        print('dir_out:', dir_out, type(dir_out))
+        self.dir_out = dir_out
+
+        # create directory only if specified
+        if isinstance(dir_out, str):
+            os.makedirs(os.path.join(self.dir_out, self.name), exist_ok=True)
+
     def __getitem__(self, key):
         'Extracts a particular cytof image from the cohort'
         return self.cytof_images[key]
@@ -1188,11 +1192,13 @@ class CytofCohort():
         return f"CytofCohort(name={self.name})"
     
     def save_cytof_cohort(self, savename):
-        directory = os.path.dirname(savename)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-        pkl.dump(self, open(savename, "wb"))
-    
+        if self.dir_out:
+            save_path = os.path.join(self.dir_out, savename)
+            pkl.dump(self, open(save_path, "wb"))
+        else:
+            raise FileNotFoundError('self.dir_out not specified')
+
+
     def batch_process_feature(self):
         """
         Batch process: if the CytofCohort is initialized by a dictionary of CytofImages
