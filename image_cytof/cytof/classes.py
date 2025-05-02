@@ -1175,11 +1175,10 @@ class CytofCohort():
         
         self.name = cohort_name
         print('dir_out:', dir_out, type(dir_out))
-        self.dir_out = dir_out
-
-        # create directory only if specified
-        if isinstance(dir_out, str):
-            os.makedirs(os.path.join(self.dir_out, self.name), exist_ok=True)
+        self.dir_out = os.path.join(dir_out, self.name) if isinstance(dir_out, str) else None 
+        os.makedirs(self.dir_out, exist_ok=True)
+        if self.dir_out:
+            print('Output folder created:', self.dir_out)        
 
     def __getitem__(self, key):
         'Extracts a particular cytof image from the cohort'

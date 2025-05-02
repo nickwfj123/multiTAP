@@ -66,12 +66,13 @@ class SetParameters():
 # # First input is for naming purposes (name of the slide of cohort)
 # # Second input is the varying ROI/TMA that you want to analyze together as one cohort
 # # Third input is the corresponding file path
-# # df_cohort_to_load = pd.DataFrame({"Slide": slides, "ROI": roi_name, "filename": fs_input}) 
-# df_cohort_to_load = pd.DataFrame({"Cohort": slides, "TMA": roi_name, "filename": fs_input}) 
+# # df is required to have three keys for downstream analysis: 'Slide', 'ROI', 'input file'
+# # df_cohort_to_load = pd.DataFrame({"Slide": slides, "ROI": roi_name, "input file": fs_input}) 
 # df_cohort_to_load.to_csv('df_cohort_to_load.csv', index=False) #debug purposes
 ####################################################
 
 ##### reading csv in manually#####
+# still required to contain the three keys (see above section)
 df_cohort_to_load = pd.read_csv('testing.csv')
 ##################################
 
