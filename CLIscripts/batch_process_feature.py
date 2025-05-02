@@ -67,19 +67,20 @@ class SetParameters():
 # # Second input is the varying ROI/TMA that you want to analyze together as one cohort
 # # Third input is the corresponding file path
 # # df is required to have three keys for downstream analysis: 'Slide', 'ROI', 'input file'
-# # df_cohort_to_load = pd.DataFrame({"Slide": slides, "ROI": roi_name, "input file": fs_input}) 
+# df_cohort_to_load = pd.DataFrame({"Slide": slides, "ROI": roi_name, "input file": fs_input}) 
 # df_cohort_to_load.to_csv('df_cohort_to_load.csv', index=False) #debug purposes
 ####################################################
 
 ##### reading csv in manually#####
-# still required to contain the three keys (see above section)
-df_cohort_to_load = pd.read_csv('testing.csv')
+# # still required to contain the three keys (see above section)
+df_cohort_to_load = pd.read_csv('/project/DPDS/Xiao_lab/shared/deep_learning_SW_RR/cytof/multiTAP_public/multiTAP/CLIscripts/PTNM_T3_cohort.csv')
 ##################################
 
 print(f'{len(df_cohort_to_load)} instances identified for cohort processing')
 
+dir_out = '/project/DPDS/Xiao_lab/shared/deep_learning_SW_RR/cytof/multiTAP_public/multiTAP/cohort_res'
 # dir_out creates an output folder. set dir_out=None to disable.
-cytof_slide_cohort = CytofCohort(cytof_images=None, df_cohort=df_cohort_to_load, cohort_name='basel_testing', dir_out='./')
+cytof_slide_cohort = CytofCohort(cytof_images=None, df_cohort=df_cohort_to_load, cohort_name='BaselTMA_PTNM_T3', dir_out=dir_out)
 
 channel_dict = {
         'nuclei': ['DNA1-Ir191', 'DNA2-Ir193'],
@@ -96,7 +97,6 @@ params_cohort = {
 
 cytof_slide_cohort.batch_process(params=params_cohort)
 cytof_slide_cohort.generate_summary()
+save_path = cytof_slide_cohort.save_cytof_cohort()
 
-cytof_slide_cohort.save_cytof_cohort('SlideBaselTMA_SP43_25_final_050125-test.pkl')
-
-print('Program completed.')
+print(f'Program completed. Results saved to {save_path}')

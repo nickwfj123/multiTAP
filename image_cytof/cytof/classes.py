@@ -1190,10 +1190,12 @@ class CytofCohort():
     def __repr__(self):
         return f"CytofCohort(name={self.name})"
     
-    def save_cytof_cohort(self, savename):
+    def save_cytof_cohort(self):
         if self.dir_out:
-            save_path = os.path.join(self.dir_out, savename)
+            save_path = f'{os.path.join(self.dir_out, self.name)}.pkl'
             pkl.dump(self, open(save_path, "wb"))
+
+            return save_path
         else:
             raise FileNotFoundError('self.dir_out not specified')
 
@@ -1231,22 +1233,35 @@ class CytofCohort():
     def batch_process(self, params: Dict):
         sys.path.append("../CLIscripts")
         from process_single_roi import process_single, SetParameters
+        
+        success_rows = []
         for i, (slide, roi, fname) in self.df_cohort.iterrows():
             paramsi = SetParameters(filename=fname,
-                        outdir=self.dir_out,
-                        label_marker_file=params.get('label_marker_file', None),
-                        slide=slide,
-                        roi=roi,
-                        quality_control_thres=params.get("quality_control_thres", 50),
-                        channels_remove=params.get("channels_remove", None),
-                        channels_dict=params.get("channels_dict", None),
-                        use_membrane=params.get("use_membrane",True),
-                        cell_radius=params.get("cell_radius", 5),
-                        normalize_qs=params.get("normalize_qs", 75),
-                        iltype=params.get('iltype', None))
+                outdir=self.dir_out,
+                label_marker_file=params.get('label_marker_file', None),
+                slide=slide,
+                roi=roi,
+                quality_control_thres=params.get("quality_control_thres", 50),
+                channels_remove=params.get("channels_remove", None),
+                channels_dict=params.get("channels_dict", None),
+                use_membrane=params.get("use_membrane",True),
+                cell_radius=params.get("cell_radius", 5),
+                normalize_qs=params.get("normalize_qs", 75),
+                iltype=params.get('iltype', None))
 
-            cytof_img = process_single(paramsi, downstream_analysis=False, verbose=False)
-            self.cytof_images[f"{slide}_{roi}"] = cytof_img
+            try:
+                cytof_img = process_single(paramsi, downstream_analysis=False, verbose=False)
+                self.cytof_images[f"{slide}_{roi}"] = cytof_img
+                
+                # image successfully processed, record index
+                success_rows.append(i)
+            
+            except Exception as e:
+                print(f"Skipping {slide}_{roi} due to error: {e}")
+                continue
+        
+        # update df_cohort to contain only successfully calculated rows
+        self.df_cohort = self.df_cohort.loc[success_rows].reset_index(drop=True)
             
         self.batch_process_feature()
 
