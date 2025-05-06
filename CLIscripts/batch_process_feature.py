@@ -13,10 +13,10 @@ import json
 # import nrrd
 import pandas as pd
 import seaborn as sns
+
 # Project Root, used for searching packages and functions
-ROOT_DIR = '/project/DPDS/Xiao_lab/shared/deep_learning_SW_RR/cytof/multiTAP_public/multiTAP/image_cytof'
+ROOT_DIR = '/project/Xie_Lab/zgu/xiao_multiplex/multiTAP/image_cytof'
 sys.path.append(ROOT_DIR)
-sys.path.append(os.path.join(ROOT_DIR, 'image_cytof'))
 
 from cytof.hyperion_preprocess import cytof_read_data_roi
 from cytof.utils import save_multi_channel_img, check_feature_distribution
@@ -73,14 +73,15 @@ class SetParameters():
 
 ##### reading csv in manually#####
 # # still required to contain the three keys (see above section)
-df_cohort_to_load = pd.read_csv('/project/DPDS/Xiao_lab/shared/deep_learning_SW_RR/cytof/multiTAP_public/multiTAP/CLIscripts/PTNM_T3_cohort.csv')
+filename = '/project/Xie_Lab/zgu/xiao_multiplex/breast_cancer_multiTAP_work/testing2.csv'
+df_cohort_to_load = pd.read_csv(filename)
 ##################################
 
 print(f'{len(df_cohort_to_load)} instances identified for cohort processing')
 
-dir_out = '/project/DPDS/Xiao_lab/shared/deep_learning_SW_RR/cytof/multiTAP_public/multiTAP/cohort_res'
+dir_out = '/project/Xie_Lab/zgu/xiao_multiplex/breast_cancer_multiTAP_work'
 # dir_out creates an output folder. set dir_out=None to disable.
-cytof_slide_cohort = CytofCohort(cytof_images=None, df_cohort=df_cohort_to_load, cohort_name='BaselTMA_PTNM_T3', dir_out=dir_out)
+cytof_slide_cohort = CytofCohort(cytof_images=None, df_cohort=df_cohort_to_load, cohort_name='BaselTMA_testing_roi4', dir_out=dir_out)
 
 channel_dict = {
         'nuclei': ['DNA1-Ir191', 'DNA2-Ir193'],
@@ -89,14 +90,20 @@ channel_dict = {
     }
 
 params_cohort = {
-  'label_marker_file': "/archive/DPDS/Xiao_lab/shared/hudanyun_sheng/github/image_cytof_test_data/external_data/The Single-Cell Pathology Landscape of Breast Cancer/markers_labels.txt",
+  'label_marker_file': "/project/Xie_Lab/zgu/xiao_multiplex/breast_cancer_multiTAP_work/marker_labels.txt",
   'channels_remove': ['nan1-nan1', 'nan2-nan2', 'nan3-nan3', 'nan4-nan4', 'nan5-nan5'],
   'channels_dict': channel_dict,
   'use_membrane': True
 }
 
+# computes features individually for all ROI/TMA in the defined cohort
 cytof_slide_cohort.batch_process(params=params_cohort)
-cytof_slide_cohort.generate_summary()
+
+# # scale feature across ROI images, if needed
+# cytof_slide_cohort.batch_process_feature()
+# cytof_slide_cohort.generate_summary()
+
+# save cohort
 save_path = cytof_slide_cohort.save_cytof_cohort()
 
 print(f'Program completed. Results saved to {save_path}')

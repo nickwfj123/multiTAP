@@ -1176,9 +1176,9 @@ class CytofCohort():
         self.name = cohort_name
         print('dir_out:', dir_out, type(dir_out))
         self.dir_out = os.path.join(dir_out, self.name) if isinstance(dir_out, str) else None 
-        os.makedirs(self.dir_out, exist_ok=True)
         if self.dir_out:
             print('Output folder created:', self.dir_out)        
+            os.makedirs(self.dir_out, exist_ok=True)
 
     def __getitem__(self, key):
         'Extracts a particular cytof image from the cohort'
@@ -1263,7 +1263,6 @@ class CytofCohort():
         # update df_cohort to contain only successfully calculated rows
         self.df_cohort = self.df_cohort.loc[success_rows].reset_index(drop=True)
             
-        self.batch_process_feature()
 
     def get_feature(self, 
                     normq: int = 75, 
