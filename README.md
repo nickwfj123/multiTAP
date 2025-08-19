@@ -106,7 +106,29 @@ In additional, you could visualizing the cluster assignments against the positiv
 
 
 # Install from Github
-If you prefer to install the package from source, you may do so with the following steps:
+
+### Dependencies Required
+
+- matplotlib==3.6.0
+- numpy==1.24.3
+- pandas==1.5.1
+- PyYAML==6.0.2
+- scikit-image==0.19.3
+- scikit-learn==1.1.3
+- scipy==1.9.3
+- seaborn==0.12.1
+- tqdm==4.64.1
+- threadpoolctl==3.1.0
+- opencv-python==4.7.0.72
+- phenograph==1.5.7
+- umap-learn==0.5.3
+- readimc==0.6.2
+- gradio==4.44.1
+- plotly==5.18.0
+
+You can check out and install them through ``requirements.txt`` as below.
+
+### Installation Steps
 
 <ol>
 <li>Clone this repo:</li>
@@ -122,7 +144,6 @@ If you prefer to install the package from source, you may do so with the followi
 <li> launch Gradio using app.py </li>
    <pre> (cytof-shared) $ cd image_cytof/ <br> (cytof-shared) $ gradio app.py </pre>
 </ol>
-
 
 # Jupyter Notebook templates
 We also provide notebook tutorials to faciliate any modifications to the analysis pipeline. We suggest the following steps:
