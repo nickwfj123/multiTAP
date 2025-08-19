@@ -21,15 +21,15 @@ The links above should open to the following analysis page:
 ## Upload Images
 Firstly, we provide two upload options in our GUI.
 
-#### Case 1: You can upload a single TXT or CSV file that contains information about antibodies, rare heavy metal isotopes, and image channel names.
+#### Case 1: Upload a single TXT or CSV file that contains information about antibodies, rare heavy metal isotopes, and image channel names.
 
-You may find the example file at ``example_data/markers_labels.txt``
+- You can find the example file at ``example_data/markers_labels.txt``
 
-#### Case 2: You can upload a TIFF file containing Regions of Interest (ROIs) stored as multiplexed images and a Marker File listing the channels to identify the antibodies.
+#### Case 2: Upload a TIFF file containing Regions of Interest (ROIs) stored as multiplexed images and a Marker File listing the channels to identify the antibodies.
 
-You may download example ROI at https://qbrc.swmed.edu/labs/xiaoxie/download/multiplex/example_image.tiff
+- You can download example ROI at https://qbrc.swmed.edu/labs/xiaoxie/download/multiplex/example_image.tiff
 
-You may find the exmaple `Marker File` at ``example_data/markers_labels.txt``
+- You can find the exmaple `Marker File` at ``example_data/markers_labels.txt``
 
 In this tutorial, we will utilize a publicly available breast cancer dataset containing 352 patients sourced from University Hospital Basel and University Hospital Zurich (original paper [here](https://pubmed.ncbi.nlm.nih.gov/31959985/)).
 
