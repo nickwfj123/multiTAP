@@ -18,17 +18,22 @@ The links above should open to the following analysis page:
 
 <img src="doc_img/platform-page.png">
 
+## Upload Images
+Firstly, we provide two upload options in our GUI.
+
+#### Case 1: You can upload a single TXT or CSV file that contains information about antibodies, rare heavy metal isotopes, and image channel names.
+
+You may find the example file at ``example_data/markers_labels.txt``
+
+#### Case 2: You can upload a TIFF file containing Regions of Interest (ROIs) stored as multiplexed images and a Marker File listing the channels to identify the antibodies.
+
+You may download example ROI at https://qbrc.swmed.edu/labs/xiaoxie/download/multiplex/example_image.tiff
+
+You may find the exmaple `Marker File` at ``example_data/markers_labels.txt``
+
 In this tutorial, we will utilize a publicly available breast cancer dataset containing 352 patients sourced from University Hospital Basel and University Hospital Zurich (original paper [here](https://pubmed.ncbi.nlm.nih.gov/31959985/)).
 
-ROI `BaselTMA_SP43_25.8kx22ky_10500x6500_8_20170928_114_115_X4Y8_262_a0_full` is used. For convenience, you may download this ROI at https://qbrc.swmed.edu/labs/xiaoxie/download/multiplex/example_image.tiff
-
-TIFF files contain Regions of Interest (ROIs) stored as multiplexed images. Since marker information is not available from the provided TIFF alone, we need an additional `Marker File` with lists of channels to identify the antibodies.
-
-The `Marker File` for this dataset is  prepared and available in 
-
-```
-example_data/markers_labels.txt
-```
+The example ROI `BaselTMA_SP43_25.8kx22ky_10500x6500_8_20170928_114_115_X4Y8_262_a0_full` is used. TIFF files contain Regions of Interest (ROIs) stored as multiplexed images. Since marker information is not available from the provided TIFF alone, we'll use the example `Marker File` with lists of channels to identify the antibodies.
 
 After loading the two files to the GUI, you would be able to read individual marker names and visualize the channels:
 
