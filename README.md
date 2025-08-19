@@ -1,5 +1,9 @@
 ![QBRC logo](doc_img/qbrc.jpeg)
 
+# Multiplexed Tissue Analysis Platform (MultiTAP)
+
+Author: Zifan Gu (Zifan.Gu@utsouthwestern.edu)
+
 # Introduction
 **Multi**plexed **T**issue **A**nalysis **P**latform (MultiTAP) is an open-source Python package designed for analyzing multiplexed tissue images. Package functionalities include the quantification of single-cell biomarkers, cell type clustering, and the analysis of cell-cell interactions. MultiTAP addresses a critical gap between the existing software landscape and the exponentially increasing volume of multiplexed tissue image data, by providing comprehensive and user-friendly tools tailored specifically for analyzing multiplexed data representations. Compared with previous software, MultiTAP offers unique features and advantages. It incorporates a cell segmentation algorithm guided by cytoplasm membrane labels, provides downstream analysis methods such as data normalization and automatic identification of marker-positive cells, and enables co-expression and cell-cell spatial interaction analysis. Moreover, MultiTAP offers the convenience of end-to-end analysis with a GUI for users from diverse backgrounds. 
 
@@ -128,7 +132,7 @@ In additional, you could visualizing the cluster assignments against the positiv
 - gradio==4.44.1
 - plotly==5.18.0
 
-You can check out and install them through ``requirements.txt`` as below.
+You can also check out and install them through ``requirements.txt`` as below.
 
 ### Installation Steps
 
