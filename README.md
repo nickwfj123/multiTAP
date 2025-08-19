@@ -84,9 +84,11 @@ Example output from this ROI: <img src="doc_img/public-step4.png">
 ## Downstream analysis
 *Co-expression analysis* measures the level of co-expression for each pair of biomarkers by calculating the odds ratio between the observed co-occurrence and the expected expressing events.
 
+For this ROI, you should get the expression matrix similar to the following: <img src="doc_img/public-step5a.png">
+
 *Spatial interactoin analysis* measures the degree of co-expression within a pair of neighborhoods. A neighbor is defined as any pair of cells that passes the threshold, which is defined either as the Euclidean distance from each cell or as the number of surrounding cells to be included in the weighted graph of k-neighbors. You will have the option to choose which in the GUI.
 
-For this ROI, you should get the expression matrix similar to the following: <img src="doc_img/public-step5.png">
+For this ROI, you should get the expression matrix similar to the following: <img src="doc_img/public-step5b.png">
 
 With the co-expression and interaction matrix, you can now visualize positive states in cells via a side-by-side comparison. This serves two purposes. 1) Validate the co-expression analysis results. High expression level should mean a similar number of positive markers within the two slides, whereas low expression level mean a large difference of in the number of positive markers. 2) Validate the spatial interaction analysis results. High interaction means the two positive markers are in close proximity of each other (proximity is previously defined in `clustering threshold`), and vice versa.
 
